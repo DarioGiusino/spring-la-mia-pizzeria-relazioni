@@ -2,6 +2,8 @@ package org.java.expizza.pojo;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,8 +23,10 @@ public class SpecialOffer {
 	@NotBlank
 	private String title;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate startDate;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate endDate;
 	
 	@Min(0)

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.java.expizza.pojo.Pizza;
+import org.java.expizza.pojo.SpecialOffer;
 import org.java.expizza.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,11 +36,13 @@ public class PizzaController {
 	@GetMapping("/pizza/{id}")
 	public String show(@PathVariable("id") Integer id, Model model) {
 		
-		Optional<Pizza> pizzaOpt = pizzaService.findById(id);
+		Optional<Pizza> pizzaOpt = pizzaService.findByIdWithSpecialOffer(id);
 		
 		Pizza pizza = pizzaOpt.get();
+		List<SpecialOffer> specialOffers = pizza.getSpecialOffers();
 		
 		model.addAttribute("pizza", pizza);
+		model.addAttribute("specialOffers", specialOffers);
 		
 		return "pizza/show";
 	}

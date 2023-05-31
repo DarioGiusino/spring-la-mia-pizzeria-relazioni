@@ -29,11 +29,6 @@ public class SpecialOfferService {
 		return specialOfferRepo.findById(id);
 	}
 	
-	public List<SpecialOffer> findByName(String title) {
-		
-		return specialOfferRepo.findByTitleContaining(title);
-	}
-	
 	public void delete(SpecialOffer specialOffer) {
 		
 		specialOfferRepo.delete(specialOffer);
