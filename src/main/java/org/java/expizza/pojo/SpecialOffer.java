@@ -82,6 +82,14 @@ public class SpecialOffer {
 	public int getDiscount() {
 		return discount;
 	}
+	
+	public String getDiscountedPrice() {
+		float pizzaPrice = getPizza().getPrice();
+		
+		float discountedPrice = pizzaPrice - (pizzaPrice * getDiscount() / 100);
+		
+		return String.format("%,.2f", discountedPrice);
+	}
 
 	public void setDiscount(int discount) {
 		this.discount = discount;

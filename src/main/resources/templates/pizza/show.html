@@ -22,6 +22,7 @@
 						<h3>[[*{title}]] - sconto applicato: [[*{discount}]]%</h3>
 						<p>Data di inizio offerta: [[*{startDate}]]</p>
 						<p>Data di fine offerta: [[*{endDate}]]</p>
+						<p>Prezzo scontato: [[*{discountedPrice}]] E</p>
 						<a th:href="@{/pizza/{pizzaId}/special-offer/edit/{id} (pizzaId = ${pizza.id}, id=*{id})}">MODIFICA OFFERTA</a>
 					</li>
 				</ul>
