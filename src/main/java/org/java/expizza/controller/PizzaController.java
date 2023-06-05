@@ -3,8 +3,10 @@ package org.java.expizza.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.java.expizza.pojo.Ingredient;
 import org.java.expizza.pojo.Pizza;
 import org.java.expizza.pojo.SpecialOffer;
+import org.java.expizza.serv.IngredientServ;
 import org.java.expizza.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,9 @@ public class PizzaController {
 	
 	@Autowired
 	private PizzaService pizzaService;
+	
+	@Autowired
+	private IngredientServ ingredientServ;
 	
 	@GetMapping("/")
 	public String index(Model model){
@@ -59,8 +64,10 @@ public class PizzaController {
 	
 	@GetMapping("/pizza/create")
 	public String create(Model model) {
+		List<Ingredient> ingredients = ingredientServ.findAll();
 		
 		model.addAttribute("pizza", new Pizza());
+		model.addAttribute("ingredients", ingredients);
 		
 		return "pizza/create";
 	}
@@ -83,11 +90,13 @@ public class PizzaController {
 	
 	@GetMapping("/pizza/edit/{id}")
 	public String edit(@PathVariable("id") int id, Model model) {
+		List<Ingredient> ingredients = ingredientServ.findAll();
 		
 		Optional<Pizza> pizzaOpt = pizzaService.findById(id);
 		Pizza pizza = pizzaOpt.get();
 		
 		model.addAttribute("pizza", pizza);
+		model.addAttribute("ingredients", ingredients);
 		
 		return "pizza/edit";
 	}
