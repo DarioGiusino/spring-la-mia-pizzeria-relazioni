@@ -119,4 +119,8 @@ public class Pizza {
 				+ "\nPrice: €" + getPrice();
 	}
 
+	public void removeIngredient(Ingredient ingredient) {
+		getIngredients().remove(ingredient);		
+	}
+
 }

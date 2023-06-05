@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.java.expizza.pojo.Ingredient;
+import org.java.expizza.pojo.Pizza;
 import org.java.expizza.serv.IngredientServ;
+import org.java.expizza.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,9 @@ public class IngredientController {
 	
 	@Autowired
 	private IngredientServ ingredientServ;
+	
+	@Autowired
+	private PizzaService pizzaServ;
 	
 	@GetMapping
 	public String index(Model model) {
@@ -61,6 +66,11 @@ public class IngredientController {
 		
 		Optional<Ingredient> ingredientOpt = ingredientServ.findById(id);
 		Ingredient ingredient = ingredientOpt.get();
+		
+		for (Pizza p : pizzaServ.findAll()) {
+			p.removeIngredient(ingredient);
+			pizzaServ.save(p);
+		}
 		
 		ingredientServ.delete(ingredient);
 		
