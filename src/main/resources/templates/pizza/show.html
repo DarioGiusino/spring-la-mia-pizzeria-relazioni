@@ -26,6 +26,18 @@
 						<a th:href="@{/pizza/{pizzaId}/special-offer/edit/{id} (pizzaId = ${pizza.id}, id=*{id})}">MODIFICA OFFERTA</a>
 					</li>
 				</ul>
+				
+				<div th:if="${ingredients.size() > 0}">
+					<h2>Ingredienti:</h2>
+					
+					<a style="color: green;" th:href="@{/ingredients/create}">Crea nuovo ingrediente</a>
+					
+					<ul>
+						<li style="margin-bottom: 10px;" th:each="ingredient : ${ingredients}" th:object="${ingredient}">
+							<h3>[[*{name}]]</h3>
+						</li>
+					</ul>
+				</div>
 			</section>
 		</main>
 	</body>

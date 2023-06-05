@@ -2,8 +2,10 @@ package org.java.expizza;
 
 import java.time.LocalDate;
 
+import org.java.expizza.pojo.Ingredient;
 import org.java.expizza.pojo.Pizza;
 import org.java.expizza.pojo.SpecialOffer;
+import org.java.expizza.serv.IngredientServ;
 import org.java.expizza.serv.PizzaService;
 import org.java.expizza.serv.SpecialOfferService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	@Autowired
 	private SpecialOfferService specialOfferService;
 	
+	@Autowired
+	private IngredientServ ingredientServ;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringLaMiaPizzeriaCrudApplication.class, args);
 	}
@@ -27,11 +32,25 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Pizza pizza1 = new Pizza("Margherita", "La bella Margherita", "https://picsum.photos/200/300", 9.99f);
-		Pizza pizza2 = new Pizza("Diavola", "La bella Diavola", "https://picsum.photos/200/300", 10.99f);
-		Pizza pizza3 = new Pizza("Napoli", "La bella Napoli", "https://picsum.photos/200/300", 11.99f);
+		Ingredient i1 = new Ingredient("Mozzarella");
+		Ingredient i2 = new Ingredient("Pomodoro");
+		Ingredient i3 = new Ingredient("Prezzemolo");
+		Ingredient i4 = new Ingredient("Sale");
+		Ingredient i5 = new Ingredient("Pepe");
+		Ingredient i6 = new Ingredient("Mortadella");
+		
+		ingredientServ.save(i1);
+		ingredientServ.save(i2);
+		ingredientServ.save(i3);
+		ingredientServ.save(i4);
+		ingredientServ.save(i5);
+		ingredientServ.save(i6);
+		
+		Pizza pizza1 = new Pizza("Margherita", "La bella Margherita", "https://picsum.photos/200/300", 9.99f, i1, i3);
+		Pizza pizza2 = new Pizza("Diavola", "La bella Diavola", "https://picsum.photos/200/300", 10.99f, i2, i4);
+		Pizza pizza3 = new Pizza("Napoli", "La bella Napoli", "https://picsum.photos/200/300", 11.99f, i5, i6);
 		Pizza pizza4 = new Pizza("Parmigiana", "La bella Parmigiana", "https://picsum.photos/200/300", 12.99f);
-		Pizza pizza5 = new Pizza("Biancaneve", "La bella Biancaneve", "https://picsum.photos/200/300", 13.99f);
+		Pizza pizza5 = new Pizza("Biancaneve", "La bella Biancaneve", "https://picsum.photos/200/300", 13.99f, i4);
 		
 		pizzaService.save(pizza1);
 		pizzaService.save(pizza2);

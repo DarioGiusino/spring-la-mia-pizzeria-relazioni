@@ -45,9 +45,11 @@ public class PizzaController {
 		
 		Pizza pizza = pizzaOpt.get();
 		List<SpecialOffer> specialOffers = pizza.getSpecialOffers();
+		List<Ingredient> ingredients = pizza.getIngredients();
 		
 		model.addAttribute("pizza", pizza);
 		model.addAttribute("specialOffers", specialOffers);
+		model.addAttribute("ingredients", ingredients);
 		
 		return "pizza/show";
 	}
